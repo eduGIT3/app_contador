@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget{
+class HomeScreen extends StatefulWidget{
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int contador=0;
+  @override
   Widget build(BuildContext context) {
     const tamano30=TextStyle(fontSize: 30);
-    int contador=0;
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('HomeScreen'),
@@ -58,6 +64,10 @@ class HomeScreen extends StatelessWidget{
             print("Pulsación registrada");
             contador++;
             print(contador);
+            setState(() { // Redibuja el widget
+              
+            });
+
           }),
 
     );
@@ -65,5 +75,4 @@ class HomeScreen extends StatelessWidget{
 
 
   }
-
 }

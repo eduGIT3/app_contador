@@ -15,10 +15,7 @@ class Home4Screen extends StatelessWidget{
           
 
 
-        body: Center(
-
-          
-        ),
+        body: const CardExample(),
 
     );
   }
