@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget{
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
@@ -8,34 +8,29 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int contador=0;
+  int contador = 0;
   @override
   Widget build(BuildContext context) {
-    const tamano30=TextStyle(fontSize: 30);
-    
+    const tamano30 = TextStyle(fontSize: 30);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('HomeScreen'),
         backgroundColor: Colors.amberAccent,
         elevation: 20,
-       
       ),
 
       backgroundColor: Colors.white,
       body: Center(
-        
-          child: 
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('deliver Features faster', style: tamano30),
+            Text('$contador', style: tamano30),
+          ],
+        ),
 
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text('deliver Features faster', style: tamano30,),
-                  Text('$contador', style: tamano30),
-                ],
-              )
-              
-
-              /*
+        /*
               MediaQuery.removePadding( //https://api.flutter.dev/flutter/widgets/AnimatedList-class.html
               context: context,
               removeTop: true,
@@ -51,28 +46,45 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         
       )         
-         */     
-          //Text('Hola Mundo desde homeScreen'),
-        ),
-        //Boton
-        floatingActionButtonLocation:FloatingActionButtonLocation.endDocked ,
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          child: Icon(Icons.add),
-          onPressed: (){
-            print("Pulsación registrada");
-            contador++;
-            print(contador);
-            setState(() { // Redibuja el widget
-              
-            });
+         */
+        
+      ),
+      //Boton
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            child: Icon(Icons.add),
+            onPressed: () {
+              print("Pulsación registrada");
+              contador++;
+              print(contador);
+              setState(() {
+                // Redibuja el widget
+              });
+            },
+          ),
 
-          }),
+            SizedBox(width: 20,),
 
+          FloatingActionButton(
+            backgroundColor: Colors.blue,
+            foregroundColor: Colors.white,
+            child: Icon(Icons.remove),
+            onPressed: () {
+              print("Pulsación registrada");
+              contador--;
+              print(contador);
+              setState(() {
+                // Redibuja el widget
+              });
+            },
+          ),
+        ],
+      ),
     );
-
-
-
   }
 }
