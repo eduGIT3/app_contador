@@ -9,6 +9,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int contador = 0;
+
+  void decrementar() {
+    contador--;
+    setState(() {});
+  }
+
+  void establecer0() {
+    contador = 0;
+    setState(() {});
+  }
+
+  void incrementar() {
+    contador++;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     const tamano30 = TextStyle(fontSize: 30);
@@ -25,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('deliver Features faster', style: tamano30),
+            Text('Numero de Cliks', style: tamano30),
             Text('$contador', style: tamano30),
           ],
         ),
@@ -47,44 +63,54 @@ class _HomeScreenState extends State<HomeScreen> {
         
       )         
          */
-        
       ),
       //Boton
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FloatingActionButton(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            child: Icon(Icons.add),
-            onPressed: () {
-              print("Pulsación registrada");
-              contador++;
-              print(contador);
-              setState(() {
-                // Redibuja el widget
-              });
-            },
-          ),
+      floatingActionButton: CustomFloatingActionButton(incrementarFn: incrementar, decrementarFn: decrementar, establecer0: establecer0,),
+    );
+  }
+}
 
-            SizedBox(width: 20,),
+class CustomFloatingActionButton extends StatelessWidget {
+  const CustomFloatingActionButton({
+    Key? key, required this.incrementarFn,
+    required this.decrementarFn,
+    required this.establecer0
+  } ): super(key:key);
 
-          FloatingActionButton(
-            backgroundColor: Colors.blue,
-            foregroundColor: Colors.white,
-            child: Icon(Icons.remove),
-            onPressed: () {
-              print("Pulsación registrada");
-              contador--;
-              print(contador);
-              setState(() {
-                // Redibuja el widget
-              });
-            },
-          ),
-        ],
-      ),
+  final Function decrementarFn;
+  final Function establecer0;
+
+  final Function incrementarFn;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        FloatingActionButton(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          child: Icon(Icons.add),
+          onPressed: () => incrementarFn(),
+        ),
+
+        //SizedBox(width: 20),
+        FloatingActionButton(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          child: Text("0"),
+          onPressed: () => establecer0(),
+        ),
+
+        //SizedBox(width: 20),
+        FloatingActionButton(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          child: Icon(Icons.remove),
+          onPressed: () => decrementarFn(),
+        ),
+      ],
     );
   }
 }
